@@ -18,6 +18,7 @@ module.exports = (sequelize, Sequelize) => {
     phone: {
       type: Sequelize.STRING
     }
+    
   });
 
   return Support;
