@@ -1,0 +1,43 @@
+<!-- Table -->
+<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+    <clr-dg-column [clrDgField]="'tckPriority'">Amount</clr-dg-column>
+    <clr-dg-column [clrDgField]="'tckStatus'">Payment Method</clr-dg-column>
+    <clr-dg-column [clrDgField]="'phone'">Email</clr-dg-column>
+    <clr-dg-column [clrDgField]="'description'">Status</clr-dg-column>
+    <clr-dg-column [clrDgField]="'createdAt'">Date Created</clr-dg-column>
+  
+    <clr-dg-placeholder>No Records found!</clr-dg-placeholder>
+  
+    <clr-dg-row *clrDgItems="let payment of payments" [clrDgItem]="payment">
+      <clr-dg-cell>{{ payment.tckPriority }}</clr-dg-cell>
+      <clr-dg-cell>{{ payment.tckStatus }}</clr-dg-cell>
+      <clr-dg-cell>{{ payment.phone }}</clr-dg-cell>
+      <clr-dg-cell>{{ payment.description }}</clr-dg-cell>
+      <clr-dg-cell>{{ payment.House_No }}</clr-dg-cell>
+      <clr-dg-cell>{{ payment.ApartmentName }}</clr-dg-cell>
+      <clr-dg-cell>{{ payment.create_time | date:'medium' }}</clr-dg-cell>
+    </clr-dg-row>
+  
+    <clr-dg-footer>
+      <clr-dg-pagination #pagination [clrDgPageSize]="10">
+        <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Payments per page</clr-dg-page-size>
+        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+        of {{pagination.totalItems}} Payments
+      </clr-dg-pagination>
+    </clr-dg-footer>
+  </clr-datagrid>
+
+  <!-- cart: "9C0197028N327104T"
+create_time: "2019-03-12T03:59:37Z"
+id: "PAYID-LSDS5CY1DW636700S2475404"
+intent: "sale"
+payer:
+payer_info:
+country_code: "US"
+email: "akimesh51-buyer@gmail.com"
+first_name: "test"
+last_name: "buyer"
+middle_name: "test"
+payer_id: "37EP5NGQF6U78"
+payment_method: "paypal"
+status: "VERIFIED"   -->

@@ -1,0 +1,27 @@
+<div class="login-wrapper">
+  <form class="login" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <section class="title">
+      <h3 class="welcome">Welcome to</h3>
+      Abutel
+      <h5 class="hint">Use your Company ID to sign in or create one now</h5>
+    </section>
+    <div class="login-group">
+      <clr-input-container>
+        <input type="text" name="username" clrInput placeholder="username" [(ngModel)]="form.username" #username="ngModel"
+          class="form-control" required />
+        <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+      </clr-input-container>
+      <clr-password-container>
+        <input type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="form.password" #password="ngModel"
+          class="form-control" required minlength="8" />
+        <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+        <clr-control-error *clrIfError="'minlength'">It must be at least 8 characters!</clr-control-error>
+      </clr-password-container>
+      <div *ngIf="showErrorAlert" class="error active">
+        Invalid user name or password
+      </div>
+      <button type="submit" class="btn btn-primary">NEXT</button>
+      <a [routerLink]="['/signup']" routerLinkActive="router-link-active" class="signup">Sign up for a Company ID</a>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,62 @@
+<!-- alerts to show success or failure of registration proccess -->
+<clr-alert [clrAlertType]="'success'" *ngIf="showSuccessAlert">
+  <clr-alert-item>
+    <span class="alert-text">
+      Registration Successful!
+    </span>
+  </clr-alert-item>
+</clr-alert>
+<clr-alert [clrAlertType]="'danger'" *ngIf="showErrorAlert">
+  <clr-alert-item>
+    <span class="alert-text">
+      Registration Failed!
+    </span>
+  </clr-alert-item>
+</clr-alert>
+
+<!-- Registration form -->
+<div class="card">
+  <div class="card-header">Registration</div>
+  <form clrForm name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <div class="card-block">
+      <div class="card-text">
+        <section class="form-block">
+          <clr-input-container>
+            <label for="firstname">First Name</label>
+            <input clrInput type="text" name="firstname" [(ngModel)]="form.firstname" #firstname="ngModel" required />
+            <clr-control-error>This field is required!</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label for="lastname">Last Name</label>
+            <input clrInput type="text" name="lastname" [(ngModel)]="form.lastname" #lastname="ngModel" required />
+            <clr-control-error>This field is required!</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label for="username">Username</label>
+            <input clrInput type="text" name="username" [(ngModel)]="form.username" #username="ngModel" required />
+            <clr-control-error>This field is required!</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label>Email</label>
+            <input clrInput type="email" name="email" [(ngModel)]="form.email" #email="ngModel" required />
+            <clr-control-helper>Enter valid email</clr-control-helper>
+            <clr-control-error>Invalid email</clr-control-error>
+          </clr-input-container>
+          <clr-password-container>
+            <label>Password</label>
+            <input placeholder="Password" name="password" clrPassword [(ngModel)]="form.password" #password="ngModel"
+              name="password" required minlength="8" />
+            <clr-control-helper>Must contain at least 8 characters with at least one of them a special character like
+              !@#$%^&*)</clr-control-helper>
+            <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+            <clr-control-error *clrIfError="'minlength'">It must be at least 8 characters!</clr-control-error>
+          </clr-password-container>
+        </section>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-success" type="submit">Register</button>
+      <button class="btn btn-danger" type="reset" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,104 @@
+<clr-alert [clrAlertType]="'success'" *ngIf="showSuccessAlert">
+  <div class="alert-item">
+    <span class="alert-text">
+      {{message}}
+    </span>
+  </div>
+</clr-alert>
+
+<div class="clr-row">
+  <div class="clr-col-lg-10 clr-col-md-8 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        Submit Ticket
+      </div>
+      <form clrForm name="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="card-block">
+          <div class="card-text">
+            <clr-select-container>
+              <label>Priority Level</label>
+              <select clrSelect [(ngModel)]="form.tckPriority" #tckPriority="ngModel"
+              class="form-control" name="tckPriority" required>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+              <clr-control-error>This field is required!</clr-control-error>
+            </clr-select-container>
+            <clr-select-container>
+              <label>Status</label>
+              <select clrSelect [(ngModel)]="form.tckStatus" #tckStatus="ngModel"
+              class="form-control" name="tckStatus"  required>
+                <option value="pending">Pending</option>
+                <option value="closed">Closed</option>
+              </select>
+              <clr-control-error>This field is required!</clr-control-error>
+            </clr-select-container>
+            <clr-textarea-container>
+              <label>Description</label>
+              <textarea clrTextarea [(ngModel)]="form.description" #description="ngModel"
+              class="form-control" name="description" required></textarea>
+              <clr-control-helper>Describe problem</clr-control-helper>
+              <clr-control-error>You must provide a description!</clr-control-error>
+            </clr-textarea-container>
+            <clr-input-container>
+              <label>Contact</label>
+              <input clrInput type="tel" [(ngModel)]="form.phone" #phone="ngModel"
+              class="form-control" name="phone" required />
+              <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+              <label for="ApartmentName">Apartment Name</label>
+              <input clrInput type="text" [(ngModel)]="form.ApartmentName" #ApartmentName="ngModel"
+              class="form-control" name="ApartmentName" required />
+              <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+              <label for="House_No">House Number</label>
+              <input clrInput type="text" [(ngModel)]="form.House_No" #House_No="ngModel"
+              class="form-control" name="House_No" required />
+              <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
+            </clr-input-container>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" type="submit">
+            Submit
+          </button>
+          <button class="btn btn-danger" type="button" (click)="resetForm()">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Table -->
+<clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
+  <clr-dg-column [clrDgField]="'tckPriority'">Priority Level</clr-dg-column>
+  <clr-dg-column [clrDgField]="'tckStatus'">Status</clr-dg-column>
+  <clr-dg-column [clrDgField]="'phone'">Msisdn</clr-dg-column>
+  <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
+  <clr-dg-column [clrDgField]="'House_No'">Description</clr-dg-column>
+  <clr-dg-column [clrDgField]="'ApartmentName'">Description</clr-dg-column>
+  <clr-dg-column [clrDgField]="'createdAt'">Date Created</clr-dg-column>
+
+  <clr-dg-placeholder>No Records found!</clr-dg-placeholder>
+
+  <clr-dg-row *clrDgItems="let support of supports" [clrDgItem]="support">
+    <clr-dg-cell>{{ support.tckPriority }}</clr-dg-cell>
+    <clr-dg-cell>{{ support.tckStatus }}</clr-dg-cell>
+    <clr-dg-cell>{{ support.phone }}</clr-dg-cell>
+    <clr-dg-cell>{{ support.description }}</clr-dg-cell>
+    <clr-dg-cell>{{ support.House_No }}</clr-dg-cell>
+    <clr-dg-cell>{{ support.ApartmentName }}</clr-dg-cell>
+    <clr-dg-cell>{{ support.createdAt | date:'medium' }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Supports per page</clr-dg-page-size>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+      of {{pagination.totalItems}} Supports
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>

@@ -1,0 +1,48 @@
+<clr-header *ngIf="isLoggedIn === true" class="header header-6">
+  <div class="branding">
+    <a routerLink="/" class="nav-link">
+      <clr-icon shape="network-globe"></clr-icon>
+      <span class="title">
+        <strong>{{title}}</strong>
+      </span>
+    </a>
+  </div>
+  <div class="header-nav" [clr-nav-level]="1">
+    <a class="active nav-link" [routerLink]="['/home']"><span class="nav-text">Home</span></a>
+    <clr-dropdown>
+      <a class="nav-link" clrDropdownTrigger>
+        <span class="nav-text">Support & Maintenance</span>
+      </a>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a routerLink="/support" clrDropdownItem>Submit Maintenance Query</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+    <clr-dropdown>
+        <a class="nav-link" clrDropdownTrigger>
+          <span class="nav-text">Billing</span>
+        </a>
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <a routerLink="/billing" clrDropdownItem>View Payment Reports</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+  </div>
+  <div class="header-actions">
+    <clr-dropdown>
+      <button class="nav-icon" clrDropdownTrigger>
+        <clr-icon shape="cog"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a routerLink="/" clrDropdownItem>Change password</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+    <clr-dropdown>
+      <button class="nav-text" clrDropdownTrigger>
+          {{loggedInUser | uppercase}}
+        <clr-icon shape="caret down"></clr-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a clrDropdownItem (click)=logOut()>Log out</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+</clr-header>
