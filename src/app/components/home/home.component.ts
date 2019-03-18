@@ -14,6 +14,10 @@ declare let paypal: any;
 export class HomeComponent implements AfterViewChecked, OnInit {
   loggedInUser: string;
   userInfo: any;
+  propertyInfo: any = [];
+
+  arrCase: object[];
+  propertyRooms: object[];
 
   addScript = false;
   paypalLoad = true;
@@ -60,8 +64,21 @@ export class HomeComponent implements AfterViewChecked, OnInit {
         this.userInfo = {
           firstname: data.user.firstname,
           lastname: data.user.lastname,
-          email: data.user.email
+          email: data.user.email,
+          House_No: data.user.tenant.House_No,
+          ApartmentName: data.user.tenant.ApartmentName,
+          rentBalance: data.user.tenant.rentBalance
         };
+      }
+    );
+
+    this.userService.getVacantHouses().subscribe(
+      data => {
+        const res = data[0];
+        this.propertyRooms = res['propertyRooms'];
+        console.log(this.propertyRooms);
+        this.propertyInfo = data;
+        console.log(data);
       }
     );
   }

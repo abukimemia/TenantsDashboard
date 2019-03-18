@@ -1,21 +1,5 @@
-<!-- alerts to show success or failure of registration proccess -->
-<clr-alert [clrAlertType]="'success'" *ngIf="showSuccessAlert">
-  <clr-alert-item>
-    <span class="alert-text">
-      Registration Successful!
-    </span>
-  </clr-alert-item>
-</clr-alert>
-<clr-alert [clrAlertType]="'danger'" *ngIf="showErrorAlert">
-  <clr-alert-item>
-    <span class="alert-text">
-      Registration Failed!
-    </span>
-  </clr-alert-item>
-</clr-alert>
-
 <!-- Registration form -->
-<div class="card">
+<!-- <div class="card">
   <div class="card-header">Registration</div>
   <form clrForm name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
     <div class="card-block">
@@ -60,3 +44,276 @@
     </div>
   </form>
 </div>
+ -->
+<button class="btn btn-outline" (click)="openRegistrationWizard = true">Click to begin Registration Process</button>
+
+<clr-wizard #wizard [(clrWizardOpen)]="openRegistrationWizard">
+  <clr-wizard-title>Registration Process</clr-wizard-title>
+
+  <clr-wizard-button [type]="'cancel'">Close</clr-wizard-button>
+  <clr-wizard-button [type]="'previous'">Previous</clr-wizard-button>
+  <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+  <clr-wizard-button [type]="'finish'">Done</clr-wizard-button>
+
+  <clr-wizard-page [clrWizardPageNextDisabled]="firstname.pristine || lastname.pristine || email.pristiine || username.pristine || password.pristine || !formPageOne.valid">
+    <ng-template clrPageTitle>Basic Information</ng-template> <!-- mandatory -->
+    <form #formPageOne="ngForm">
+      <section class="form-block">
+        <label>Please fill in the form with the correct information...</label>
+        <div class="form-group">
+          <label>First Name</label>
+          <label for="firstname" aria-haspopup="true" role="tooltip" [class.invalid]="firstname.touched && !firstname.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="text" id="firstname" required [(ngModel)]="form.firstname" name="firstname" #firstname="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <label for="lastname" aria-haspopup="true" role="tooltip" [class.invalid]="lastname.touched && !lastname.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="text" id="lastname" required [(ngModel)]="form.lastname" name="lastname" #lastname="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <label for="email" aria-haspopup="true" role="tooltip" [class.invalid]="email.touched && !email.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="email" id="email" required [(ngModel)]="form.email" name="email" #email="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Username</label>
+          <label for="username" aria-haspopup="true" role="tooltip" [class.invalid]="username.touched && !username.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="text" id="username" required [(ngModel)]="form.username" name="username" #username="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <label for="password" aria-haspopup="true" role="tooltip" [class.invalid]="password.touched && !password.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="password" id="password" required [(ngModel)]="form.password" name="password" #password="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+      </section>
+    </form>
+  </clr-wizard-page>
+
+  <clr-wizard-page [clrWizardPageNextDisabled]="SSN.pristine || nationality.pristine || birthDate.pristine || occupation.pristine || contact.pristine || emergencyContact.pristine || postalAddress.pristine || House_No.pristine || ApartmentName.pristine || rentBalance.pristine || !formPageTwo.valid">
+    <ng-template clrPageTitle>Tenant Information</ng-template> <!-- mandatory -->
+    <ng-template clrPageNavTitle>
+      Tenant Information
+    </ng-template> <!-- optional -->
+    <form #formPageTwo="ngForm">
+      <section class="form-block">
+        <label>Please fill in form...</label>
+        <div class="form-group">
+          <label>National/Passport/Alien Id</label>
+          <label for="SSN" aria-haspopup="true" role="tooltip" [class.invalid]="SSN.touched && !SSN.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="text" id="SSN" required [(ngModel)]="form.SSN" name="SSN" #SSN="ngModel">
+            <span class="tooltip-content">
+              This field cannot be empty!
+            </span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Nationality</label>
+          <label for="nationality" aria-haspopup="true" role="tooltip" [class.invalid]="nationality.touched && !nationality.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="text" id="nationality" required [(ngModel)]="form.nationality" name="nationality" #nationality="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Date of birth</label>
+          <label for="birthDate" aria-haspopup="true" role="tooltip" [class.invalid]="birthDate.touched && !birthDate.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="date" clrDate id="birthDate" required [(ngModel)]="form.birthDate" name="birthDate" #birthDate="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Occupation</label>
+          <label for="occupation" aria-haspopup="true" role="tooltip" [class.invalid]="occupation.touched && !occupation.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="text" id="occupation" required [(ngModel)]="form.occupation" name="occupation" #occupation="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Contact</label>
+          <label for="contact" aria-haspopup="true" role="tooltip" [class.invalid]="contact.touched && !contact.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="phone" id="contact" required [(ngModel)]="form.contact" name="contact" #contact="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Emergency Contact</label>
+          <label for="emergencyContact" aria-haspopup="true" role="tooltip" [class.invalid]="emergencyContact.touched && !emergencyContact.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="phone" id="emergencyContact" required [(ngModel)]="form.emergencyContact" name="emergencyContact"
+              #emergencyContact="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Postal Address</label>
+          <label for="postalAddress" aria-haspopup="true" role="tooltip" [class.invalid]="postalAddress.touched && !postalAddress.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="text" id="postalAddress" required [(ngModel)]="form.postalAddress" name="postalAddress"
+              #postalAddress="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>House Number</label>
+          <label for="House_No" aria-haspopup="true" role="tooltip" [class.invalid]="House_No.touched && !House_No.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <select clrSelect id="House_No" required [(ngModel)]="form.House_No" name="House_No" #House_No="ngModel">
+              <option *ngFor="let house of houses" [value]="house">{{house}}</option>
+              <option value="one">One</option>
+              <option value="two">Two</option>
+              <option value="three">Three</option>
+            </select>
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Apartment Name</label>
+          <label for="ApartmentName" aria-haspopup="true" role="tooltip" [class.invalid]="ApartmentName.touched && !ApartmentName.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <select clrSelect id="ApartmentName" required [(ngModel)]="form.ApartmentName" name="ApartmentName"
+              #ApartmentName="ngModel">
+              <option *ngFor="let apartment of apartments" [value]="apartment">{{apartment}}</option>
+              <option value="one">One</option>
+              <option value="two">Two</option>
+              <option value="three">Three</option>
+            </select>
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Rent Balance</label>
+          <label for="rentBalance" aria-haspopup="true" role="tooltip" [class.invalid]="rentBalance.touched && !rentBalance.valid"
+            class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+            <input type="text" id="rentBalance" required [(ngModel)]="form.rentBalance" name="rentBalance" #rentBalance="ngModel">
+            <span class="tooltip-content">This field cannot be empty!</span>
+          </label>
+        </div>
+      </section>
+    </form>
+  </clr-wizard-page>
+
+  <clr-wizard-page clrWizardPagePreventDefault="true" (clrWizardPageOnCommit)="onSubmit()" (clrWizardPageOnCancel)="doCancel()"
+    [clrWizardPageNextDisabled]="!formPageOne.valid || !formPageTwo.valid">
+    <ng-template clrPageTitle>Summary</ng-template> <!-- mandatory -->
+    <ng-template clrPageNavTitle>
+      <span *ngIf="formPageOne.valid && formPageTwo.valid">
+        Ready to go!
+      </span>
+      <span *ngIf="!formPageOne.valid || !formPageTwo.valid">
+        Not ready yet
+      </span>
+    </ng-template> <!-- optional -->
+
+    <div class="spinner" *ngIf="loadingFlag">
+      Loading...
+    </div>
+
+    <!-- alerts to show success or failure of registration proccess -->
+    <clr-alert [clrAlertType]="'success'" *ngIf="showSuccessAlert">
+      <clr-alert-item>
+        <span class="alert-text">
+          Registration Successful!
+        </span>
+      </clr-alert-item>
+    </clr-alert>
+    <clr-alert [clrAlertType]="'danger'" *ngIf="showErrorAlert">
+      <clr-alert-item>
+        <span class="alert-text">
+          Registration Failed!
+          {{errorMessage}}
+        </span>
+      </clr-alert-item>
+    </clr-alert>
+    
+    <div *ngIf="formPageOne.valid && formPageTwo.valid">
+      <p>Congratulations! You are done with this wizard.</p>
+      <form class="clr-form clr-form-horizontal" name="form" [class.hide]="loadingFlag">
+        <label>Your information</label>
+        <section class="form-block">
+          <div class="form-group">
+            <label>First Name:</label>
+            <span>{{ this.form.firstname }}</span>
+          </div>
+          <div class="form-group">
+            <label>Last Name:</label>
+            <span>{{ this.form.lastname }}</span>
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <span>{{ this.form.email }}</span>
+          </div>
+          <div class="form-group">
+            <label>Username:</label>
+            <span>{{ this.form.username }}</span>
+          </div>
+          <div class="form-group">
+            <label>Password:</label>
+            <span>{{ this.form.password }}</span>
+          </div>
+          <div class="form-group">
+            <label>National ID Number:</label>
+            <span>{{ this.form.SSN }}</span>
+          </div>
+          <div class="form-group">
+            <label>Nationality:</label>
+            <span>{{ this.form.nationality }}</span>
+          </div>
+          <div class="form-group">
+            <label>Date of birth:</label>
+            <span>{{ this.form.birthDate }}</span>
+          </div>
+          <div class="form-group">
+            <label>Occupation:</label>
+            <span>{{ this.form.occupation }}</span>
+          </div>
+          <div class="form-group">
+            <label>Contact:</label>
+            <span>{{ this.form.contact }}</span>
+          </div>
+          <div class="form-group">
+            <label>Emergency Contact:</label>
+            <span>{{ this.form.emergencyContact }}</span>
+          </div>
+          <div class="form-group">
+            <label>Postal Address:</label>
+            <span>{{ this.form.postalAddress }}</span>
+          </div>
+          <div class="form-group">
+            <label>House Number:</label>
+            <span>{{ this.form.House_No }}</span>
+          </div>
+          <div class="form-group">
+            <label>Apartment Name:</label>
+            <span>{{ this.form.ApartmentName }}</span>
+          </div>
+          <div class="form-group">
+            <label>RentBalance:</label>
+            <span>{{ this.form.rentBalance }}</span>
+          </div>
+        </section>
+      </form>
+    </div>
+
+    <div *ngIf="!formPageOne.valid || !formPageTwo.valid">
+      <p>Not quite there yet.</p>
+    </div>
+
+  </clr-wizard-page>
+</clr-wizard>

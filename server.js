@@ -8,9 +8,20 @@ app.use(bodyParser.urlencoded({
 
 const cors = require('cors')
 const corsOptions = {
-  origin: 'http://localhost:4206',
+  origin: ['http://localhost:4206', 'http://localhost:4200'],
   optionsSuccessStatus: 200
 }
+
+/* var whitelist = ['http://example1.com', 'http://example2.com']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+} */
 
 app.use(cors(corsOptions))
  

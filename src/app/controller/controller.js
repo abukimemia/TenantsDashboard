@@ -5,47 +5,10 @@ const Role = db.role;
 const Tenant = db.tenant;
 // const uuid = require('uuidv4');
 
-
 const Op = db.Sequelize.Op;
 
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
-
-/* exports.signup = (req, res) => {
-  // Save User to Database
-  console.log("Processing func -> SignUp");
-
-  User.create({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    username: req.body.username,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
-  }).then(user => {
-
-    Role.findAll({
-      where: {
-        name: {
-          [Op.or]: req.body.roles
-        }
-      }
-    }).then(roles => {
-      user.setRoles(roles).then(() => {
-        res.send({
-          message: 'User registered successfully!'
-        });
-      });
-    }).catch(err => {
-      res.status(500).send({
-        reason: err.message
-      });
-    });
-  }).catch(err => {
-    res.status(500).send({
-      reason: err.message
-    });
-  })
-} */
 
 // Post a User
 exports.signup = (req, res) => {

@@ -6,13 +6,26 @@
   <div class="clr-col-lg-8 clr-col-md-8 clr-col-12">
     <div class="card">
       <div class="card-header">
-        User Details
+        <div class="clr-row clr-justify-content-between">
+          <div class="clr-col-4">
+            <span>
+              User Details
+            </span>
+          </div>
+          <div class="clr-col-4">
+            <span>
+              <h5>Rent Balance: {{userInfo.rentBalance}}</h5>
+            </span>
+          </div>
+        </div>
       </div>
       <div class="card-block">
         <div class="card-text">
           <p>First Name: <strong>{{userInfo.firstname}}</strong></p>
           <p>Last Name: <strong>{{userInfo.lastname}}</strong></p>
           <p>Email: <strong>{{userInfo.email}}</strong></p>
+          <p>Apartment Name: <strong>{{userInfo.ApartmentName}}</strong></p>
+          <p>House: <strong>{{userInfo.House_No}}</strong></p>
           <br>
         </div>
       </div>
@@ -23,3 +36,10 @@
 <input type="number" placeholder="Enter rent amount!" [(ngModel)]="finalAmount" style="padding-bottom: 10px;">
 <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
 <div id="paypal-checkout-btn"></div>
+
+<ul>
+  <li *ngFor="let n of propertyInfo">{{n.buildingName}}, {{n.buildAddress}}</li>
+  <ol>
+    <li *ngFor="let m of n.propertyRooms">{{m.roomName}}, {{m.createdAt | date: 'medium'}}</li>
+  </ol>
+</ul>
