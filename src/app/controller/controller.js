@@ -130,7 +130,7 @@ exports.userContent = (req, res) => {
       where: {
        // fk_uuid: db.Sequelize.col('users.uuid')
       },
-      attributes: ['SSN', 'nationality', 'birthDate', 'occupation', 'contact', 'emergencyContact', 'postalAddress', 'House_No', 'ApartmentName', 'rentBalance'
+      attributes: [ ['id', 'tenantId'], 'SSN', 'nationality', 'birthDate', 'occupation', 'contact', 'emergencyContact', 'postalAddress', 'House_No', 'ApartmentName', 'rentBalance'
       ]
     }]
   }).then(user => {
@@ -157,7 +157,7 @@ exports.findAll = (req, res) => {
       where: {
         // fk_uuid: db.Sequelize.col('users.uuid')
       },
-      attributes: ['SSN', 'nationality', 'birthDate', 'occupation', 'contact', 'emergencyContact', 'postalAddress', 'House_No', 'ApartmentName', 'rentBalance']
+      attributes: [['id', 'tenantId'], 'SSN', 'nationality', 'birthDate', 'occupation', 'contact', 'emergencyContact', 'postalAddress', 'House_No', 'ApartmentName', 'rentBalance']
     }]
   }).then(customers => {
     res.status(200).send(customers);

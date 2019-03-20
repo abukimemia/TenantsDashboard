@@ -17,6 +17,8 @@ export class AuthService {
 
   private loginUrl = 'http://localhost:8000/api/auth/signin';
   private signupUrl = 'http://localhost:8000/api/auth/signup';
+  private vacantPropertyUrl = 'http://localhost:8080/api/propertyRooms/vacant';
+  private propertyListingsUrl = 'http://localhost:8080/api/propertyListings';
 
   constructor(private http: HttpClient) {
   }
@@ -27,5 +29,13 @@ export class AuthService {
 
   signUp(info: SignUpInfo): Observable<string> {
     return this.http.post<string>(this.signupUrl, info, httpOptions);
+  }
+
+  getVacantHouses(): Observable<any> {
+    return this.http.get(this.vacantPropertyUrl);
+  }
+
+  getPropertyListings(): Observable<any> {
+    return this.http.get(this.propertyListingsUrl);
   }
 }

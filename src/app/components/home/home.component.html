@@ -34,12 +34,11 @@
 </div>
 
 <input type="number" placeholder="Enter rent amount!" [(ngModel)]="finalAmount" style="padding-bottom: 10px;">
-<h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+<!-- <h2 *ngIf="paypalLoad">Paypal button is loading</h2> -->
+<span *ngIf="paypalLoad" class="spinner spinner-inline">
+  Loading...
+</span>
+<span *ngIf="paypalLoad">
+  Paypal button is loading...
+</span>
 <div id="paypal-checkout-btn"></div>
-
-<ul>
-  <li *ngFor="let n of propertyInfo">{{n.buildingName}}, {{n.buildAddress}}</li>
-  <ol>
-    <li *ngFor="let m of n.propertyRooms">{{m.roomName}}, {{m.createdAt | date: 'medium'}}</li>
-  </ol>
-</ul>

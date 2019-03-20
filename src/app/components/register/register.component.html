@@ -174,11 +174,8 @@
           <label>House Number</label>
           <label for="House_No" aria-haspopup="true" role="tooltip" [class.invalid]="House_No.touched && !House_No.valid"
             class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-            <select clrSelect id="House_No" required [(ngModel)]="form.House_No" name="House_No" #House_No="ngModel">
-              <option *ngFor="let house of houses" [value]="house">{{house}}</option>
-              <option value="one">One</option>
-              <option value="two">Two</option>
-              <option value="three">Three</option>
+            <select id="House_No" required [(ngModel)]="form.House_No" name="House_No" #House_No="ngModel">
+              <option *ngFor="let house of houses" [value]="house.roomName">{{house.roomName}}</option>
             </select>
             <span class="tooltip-content">This field cannot be empty!</span>
           </label>
@@ -187,12 +184,9 @@
           <label>Apartment Name</label>
           <label for="ApartmentName" aria-haspopup="true" role="tooltip" [class.invalid]="ApartmentName.touched && !ApartmentName.valid"
             class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-            <select clrSelect id="ApartmentName" required [(ngModel)]="form.ApartmentName" name="ApartmentName"
+            <select id="ApartmentName" required [(ngModel)]="form.ApartmentName" name="ApartmentName"
               #ApartmentName="ngModel">
-              <option *ngFor="let apartment of apartments" [value]="apartment">{{apartment}}</option>
-              <option value="one">One</option>
-              <option value="two">Two</option>
-              <option value="three">Three</option>
+              <option *ngFor="let apartment of apartments" [value]="apartment.buildingName">{{apartment.buildingName}}</option>
             </select>
             <span class="tooltip-content">This field cannot be empty!</span>
           </label>

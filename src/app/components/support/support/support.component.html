@@ -41,24 +41,6 @@
               <clr-control-helper>Describe problem</clr-control-helper>
               <clr-control-error>You must provide a description!</clr-control-error>
             </clr-textarea-container>
-            <clr-input-container>
-              <label>Contact</label>
-              <input clrInput type="tel" [(ngModel)]="form.phone" #phone="ngModel"
-              class="form-control" name="phone" required />
-              <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
-            </clr-input-container>
-            <clr-input-container>
-              <label for="ApartmentName">Apartment Name</label>
-              <input clrInput type="text" [(ngModel)]="form.ApartmentName" #ApartmentName="ngModel"
-              class="form-control" name="ApartmentName" required />
-              <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
-            </clr-input-container>
-            <clr-input-container>
-              <label for="House_No">House Number</label>
-              <input clrInput type="text" [(ngModel)]="form.House_No" #House_No="ngModel"
-              class="form-control" name="House_No" required />
-              <clr-control-error *clrIfError="'required'">This field is required!</clr-control-error>
-            </clr-input-container>
           </div>
         </div>
         <div class="card-footer">
@@ -76,10 +58,10 @@
 <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
   <clr-dg-column [clrDgField]="'tckPriority'">Priority Level</clr-dg-column>
   <clr-dg-column [clrDgField]="'tckStatus'">Status</clr-dg-column>
-  <clr-dg-column [clrDgField]="'phone'">Msisdn</clr-dg-column>
+  <clr-dg-column [clrDgField]="'tenant.contact'">Msisdn</clr-dg-column>
   <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
-  <clr-dg-column [clrDgField]="'House_No'">Description</clr-dg-column>
-  <clr-dg-column [clrDgField]="'ApartmentName'">Description</clr-dg-column>
+  <clr-dg-column [clrDgField]="'tenant.House_No'">House</clr-dg-column>
+  <clr-dg-column [clrDgField]="'tenant.ApartmentName'">Apartment</clr-dg-column>
   <clr-dg-column [clrDgField]="'createdAt'">Date Created</clr-dg-column>
 
   <clr-dg-placeholder>No Records found!</clr-dg-placeholder>
@@ -87,10 +69,10 @@
   <clr-dg-row *clrDgItems="let support of supports" [clrDgItem]="support">
     <clr-dg-cell>{{ support.tckPriority }}</clr-dg-cell>
     <clr-dg-cell>{{ support.tckStatus }}</clr-dg-cell>
-    <clr-dg-cell>{{ support.phone }}</clr-dg-cell>
+    <clr-dg-cell>{{ support.tenant.contact }}</clr-dg-cell>
     <clr-dg-cell>{{ support.description }}</clr-dg-cell>
-    <clr-dg-cell>{{ support.House_No }}</clr-dg-cell>
-    <clr-dg-cell>{{ support.ApartmentName }}</clr-dg-cell>
+    <clr-dg-cell>{{ support.tenant.House_No }}</clr-dg-cell>
+    <clr-dg-cell>{{ support.tenant.ApartmentName }}</clr-dg-cell>
     <clr-dg-cell>{{ support.createdAt | date:'medium' }}</clr-dg-cell>
   </clr-dg-row>
 

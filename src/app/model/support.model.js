@@ -8,15 +8,6 @@ module.exports = (sequelize, Sequelize) => {
     },
     description: {
       type: Sequelize.STRING
-    },
-    ApartmentName: {
-      type: Sequelize.STRING
-    },
-    House_No: {
-      type: Sequelize.STRING
-    },
-    phone: {
-      type: Sequelize.STRING
     }
     
   });

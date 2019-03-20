@@ -14,7 +14,7 @@ import { Support } from './../../../model/support';
 export class SupportComponent implements OnInit {
 
   form: any = {};
-  supports: any = [2];
+  supports: any = [];
   loading = true;
   showSuccessAlert: boolean;
   message: any;
@@ -33,18 +33,17 @@ export class SupportComponent implements OnInit {
     this.supportForm = new FormGroup({
       tckPriority: new FormControl('', Validators.required),
       tckStatus: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      ApartmentName: new FormControl('', Validators.required),
-      House_No: new FormControl('', Validators.required),
     });
    }
 
   ngOnInit() {
     this.userService.getUserBoard().subscribe(data => {
-      console.log(data.user.uuid);
+      console.log('userId', data.user.uuid);
+      console.log('tenantId', data.user.tenant.tenantId);
       data = this.userInfo = {
-        uuid: data.user.uuid
+        uuid: data.user.uuid,
+        tenantId: data.user.tenant.tenantId
       };
     });
   }
@@ -69,11 +68,9 @@ export class SupportComponent implements OnInit {
     this.supportInfo = new Support (
       this.form.tckPriority,
       this.form.tckStatus,
-      this.form.phone,
       this.form.description,
-      this.form.ApartmentName,
-      this.form.House_No,
-      this.userInfo.uuid
+      this.userInfo.uuid,
+      this.userInfo.tenantId
     );
     this.supportService.submitTicket(this.supportInfo).subscribe(data => {
       this.showSuccessAlert = true;

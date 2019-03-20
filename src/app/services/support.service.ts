@@ -15,13 +15,14 @@ export class SupportService {
 
 // URL to web api
 private supportUrl = 'http://localhost:8000/api/supports';
+private userSupportUrl = 'http://localhost:8000/api/user/supports';
 
 constructor(
   private http: HttpClient
 ) { }
 
 getTckSupports (): Observable<any[]> {
-  return this.http.get<any[]>(this.supportUrl);
+  return this.http.get<any[]>(this.userSupportUrl);
 }
 
 submitTicket (support: Support): Observable<Support> {

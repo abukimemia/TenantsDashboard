@@ -13,16 +13,19 @@ import { SignUpInfo } from 'src/app/auth/signup-info';
 export class RegisterComponent implements OnInit {
 
   @ViewChild('wizard') wizard: ClrWizard;
+  // @ViewChild('myForm') form: any = {};
 
   form: any = {};
+  apartments: any = [];
+  houses: any = [];
   signupInfo: SignUpInfo;
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
-  showSuccessAlert: boolean;
-  showErrorAlert: boolean;
-  loadingFlag: Boolean = false;
-  openRegistrationWizard: Boolean = false;
+  showSuccessAlert = false;
+  showErrorAlert = false;
+  loadingFlag = false;
+  openRegistrationWizard = false;
 
 
   constructor(
@@ -31,6 +34,20 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.authService.getPropertyListings().subscribe(
+      data => {
+        this.apartments = data;
+        console.log('apartements:', this.apartments);
+      }
+    );
+
+    this.authService.getVacantHouses().subscribe(
+      data => {
+        this.houses = data;
+        console.log('vacant houses:', this.houses);
+        console.log(this.houses.rentAmount);
+      }
+    );
   }
 
   doCancel(): void {
@@ -56,6 +73,7 @@ export class RegisterComponent implements OnInit {
       this.form.House_No,
       this.form.ApartmentName,
       this.form.rentBalance,
+      // this.houses.rentBalance
     );
 
     this.authService.signUp(this.signupInfo).subscribe(

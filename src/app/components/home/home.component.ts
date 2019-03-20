@@ -48,7 +48,6 @@ export class HomeComponent implements AfterViewChecked, OnInit {
     }
   };
 
-
   constructor(
     private tokenStorage: TokenStorageService,
     private userService: UserService,
@@ -61,24 +60,15 @@ export class HomeComponent implements AfterViewChecked, OnInit {
     }
     this.userService.getUserBoard().subscribe(
       data => {
+        console.log('returned user information:', data);
         this.userInfo = {
           firstname: data.user.firstname,
           lastname: data.user.lastname,
           email: data.user.email,
-          House_No: data.user.tenant.House_No,
           ApartmentName: data.user.tenant.ApartmentName,
+          House_No: data.user.tenant.House_No,
           rentBalance: data.user.tenant.rentBalance
         };
-      }
-    );
-
-    this.userService.getVacantHouses().subscribe(
-      data => {
-        const res = data[0];
-        this.propertyRooms = res['propertyRooms'];
-        console.log(this.propertyRooms);
-        this.propertyInfo = data;
-        console.log(data);
       }
     );
   }
