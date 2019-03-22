@@ -39,6 +39,11 @@ db.user.hasMany(db.support, {foreignKey: 'fk_uuid', sourceKey: 'uuid'});
 db.support.belongsTo(db.user, {foreignKey: 'fk_uuid', targetKey: 'uuid'});
 db.support.belongsTo(db.tenant, {foreignKey: 'fk_tenantId', targetKey: 'id'});
 
+// One-to-Many relationship (1:M)
+db.user.hasMany(db.payments, {foreignKey: 'fk_uuid', sourceKey: 'uuid'});
+db.payments.belongsTo(db.user, {foreignKey: 'fk_uuid', targetKey: 'uuid'});
+db.payments.belongsTo(db.tenant, {foreignKey: 'fk_tenantId', targetKey: 'id'});
+
 // db.address.belongsTo(db.customers, {foreignKey: 'fk_customerid', targetKey: 'uuid'});
 // db.customers.hasOne(db.address, {foreignKey: 'fk_customerid', targetKey: 'uuid'});
 

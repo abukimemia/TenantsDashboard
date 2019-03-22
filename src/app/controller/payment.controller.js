@@ -5,14 +5,13 @@ exports.create = (req, res) => {
   // Save to PostgreSQL database
   Payment.create({
     "id": req.body.id,
-    "first_name": req.body.first_name,
-    "last_name": req.body.last_name,
-    "middle_name": req.body.middle_name,
-    "payment_method": req.body.payment_method,
-    "status": req.body.status,
-    "create_time": req.body.create_time,
-    "currency": req.body.currency,
-    "total": req.body.total
+    "cart": req.body.first_name,
+    "payment_method": req.body.last_name,
+    "state": req.body.middle_name,
+    "total": req.body.payment_method,
+    "create_time": req.body.status,
+    "fk_uuid": req.body.create_time,
+    "fk_tenantId": req.body.currency
   }).then(data => {
     // Send created data to client
     res.json(data);

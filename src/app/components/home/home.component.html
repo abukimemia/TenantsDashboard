@@ -2,14 +2,22 @@
   Welcome <strong>{{loggedInUser | uppercase}}</strong> to your portal page!
 </p>
 
-<div class="clr-row">
+<clr-alert [clrAlertType]="'success'" *ngIf="showSuccessAlert">
+    <div class="alert-item">
+      <span class="alert-text">
+        {{message}}
+      </span>
+    </div>
+  </clr-alert>
+
+<div *ngIf="userInfo !== undefined;else noUserInfo" class="clr-row">
   <div class="clr-col-lg-8 clr-col-md-8 clr-col-12">
     <div class="card">
       <div class="card-header">
         <div class="clr-row clr-justify-content-between">
           <div class="clr-col-4">
             <span>
-              User Details
+              <h5>User Details</h5>
             </span>
           </div>
           <div class="clr-col-4">
@@ -21,17 +29,35 @@
       </div>
       <div class="card-block">
         <div class="card-text">
-          <p>First Name: <strong>{{userInfo.firstname}}</strong></p>
-          <p>Last Name: <strong>{{userInfo.lastname}}</strong></p>
-          <p>Email: <strong>{{userInfo.email}}</strong></p>
-          <p>Apartment Name: <strong>{{userInfo.ApartmentName}}</strong></p>
-          <p>House: <strong>{{userInfo.House_No}}</strong></p>
+          <ul>
+            <li>
+              First Name: <strong>{{userInfo.firstname}}</strong>
+            </li>
+            <li>
+              Last Name: <strong>{{userInfo.lastname}}</strong>
+            </li>
+            <li>
+              Email: <strong>{{userInfo.email}}</strong>
+            </li>
+            <li>
+              Apartment Name: <strong>{{userInfo.ApartmentName}}</strong>
+            </li>
+            <li>
+              House: <strong>{{userInfo.House_No}}</strong>
+            </li>
+          </ul>
           <br>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #noUserInfo>
+  <span class="spinner spinner-lg">
+    Loading...
+  </span>
+</ng-template>
 
 <input type="number" placeholder="Enter rent amount!" [(ngModel)]="finalAmount" style="padding-bottom: 10px;">
 <!-- <h2 *ngIf="paypalLoad">Paypal button is loading</h2> -->

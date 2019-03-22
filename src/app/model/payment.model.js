@@ -3,25 +3,11 @@ module.exports = (sequelize, Sequelize) => {
       id: {
         type: Sequelize.STRING,
         primaryKey: true
-
-      },
-      first_name: {
-        type: Sequelize.STRING
-      },
-      last_name: {
-        type: Sequelize.STRING
-      },
-      middle_name: {
-        type: Sequelize.STRING,
-        allowNull: true,
       },
       payment_method: {
         type: Sequelize.STRING
       },
-      status: {
-        type: Sequelize.STRING
-      },
-      currency: {
+      state: {
         type: Sequelize.STRING
       },
       total: {
