@@ -1,20 +1,20 @@
 <!-- Table -->
 <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
-    <clr-dg-column [clrDgField]="'tckPriority'">Amount</clr-dg-column>
-    <clr-dg-column [clrDgField]="'tckStatus'">Payment Method</clr-dg-column>
-    <clr-dg-column [clrDgField]="'phone'">Email</clr-dg-column>
-    <clr-dg-column [clrDgField]="'description'">Status</clr-dg-column>
-    <clr-dg-column [clrDgField]="'createdAt'">Date Created</clr-dg-column>
+    <clr-dg-column [clrDgField]="'id'">Payment Id</clr-dg-column>
+    <clr-dg-column [clrDgField]="'payment_method'">Payment Method</clr-dg-column>
+    <clr-dg-column [clrDgField]="'state'">State</clr-dg-column>
+    <clr-dg-column [clrDgField]="'total'">Amount Paid</clr-dg-column>
+    <clr-dg-column>Balance</clr-dg-column>
+    <clr-dg-column [clrDgField]="'create_time'">Date Created</clr-dg-column>
   
     <clr-dg-placeholder>No Records found!</clr-dg-placeholder>
   
     <clr-dg-row *clrDgItems="let payment of payments" [clrDgItem]="payment">
-      <clr-dg-cell>{{ payment.tckPriority }}</clr-dg-cell>
-      <clr-dg-cell>{{ payment.tckStatus }}</clr-dg-cell>
-      <clr-dg-cell>{{ payment.phone }}</clr-dg-cell>
-      <clr-dg-cell>{{ payment.description }}</clr-dg-cell>
-      <clr-dg-cell>{{ payment.House_No }}</clr-dg-cell>
-      <clr-dg-cell>{{ payment.ApartmentName }}</clr-dg-cell>
+      <clr-dg-cell>{{ payment.id }}</clr-dg-cell>
+      <clr-dg-cell>{{ payment.payment_method }}</clr-dg-cell>
+      <clr-dg-cell>{{ payment.state }}</clr-dg-cell>
+      <clr-dg-cell>{{ payment.total }}</clr-dg-cell>
+      <clr-dg-cell>{{ (payment.total) - (160)}}</clr-dg-cell>
       <clr-dg-cell>{{ payment.create_time | date:'medium' }}</clr-dg-cell>
     </clr-dg-row>
   

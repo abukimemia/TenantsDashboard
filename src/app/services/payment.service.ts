@@ -12,11 +12,17 @@ const httpOptions = {
 })
 export class PaymentService {
 
-  private paymentReportUrl = 'http://localhost:8000/api/payment';
+  private baseUrl = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) { }
 
   submitPayment(info: any): Observable<any> {
-    return this.http.post<any>(this.paymentReportUrl, info, httpOptions);
+    const url = `${this.baseUrl}/payment`;
+    return this.http.post<any>(url, info, httpOptions);
+  }
+
+  getUserPayment(): Observable<any> {
+    const url = `${this.baseUrl}/user/payment`;
+    return this.http.get<any>(url);
   }
 }

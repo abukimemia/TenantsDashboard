@@ -46,7 +46,7 @@ export class HomeComponent implements AfterViewChecked, OnInit {
       return actions.payment.execute().then((payment) => {
         // Do something when payment is successful.
 
-        window.alert('Payment transaction completed!');
+        // window.alert('Payment transaction completed!');
 
         console.log('Payment id:', payment.id);
         console.log('Payment time:', payment.create_time);
@@ -93,6 +93,8 @@ ngOnInit() {
     data => {
       console.log('returned user information:', data);
       this.userInfo = {
+        uuid: data.user.uuid,
+        tenantId: data.user.tenant.tenantId,
         firstname: data.user.firstname,
         lastname: data.user.lastname,
         email: data.user.email,

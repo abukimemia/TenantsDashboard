@@ -117,7 +117,7 @@ exports.userContent = (req, res) => {
     where: {
       uuid: req.userId
     },
-    attributes: ['uuid', 'firstname', 'lastname', 'username', 'email'],
+    attributes: ['uuid', 'firstname', 'lastname', 'username', 'email', 'createdAt'],
     include: [{
       model: Role,
       attributes: ['id', 'name'],
@@ -128,9 +128,10 @@ exports.userContent = (req, res) => {
     include: [{
       model: Tenant,
       where: {
-       // fk_uuid: db.Sequelize.col('users.uuid')
+        // fk_uuid: db.Sequelize.col('users.uuid')
       },
-      attributes: [ ['id', 'tenantId'], 'SSN', 'nationality', 'birthDate', 'occupation', 'contact', 'emergencyContact', 'postalAddress', 'House_No', 'ApartmentName', 'rentBalance'
+      attributes: [
+        ['id', 'tenantId'], 'SSN', 'nationality', 'birthDate', 'occupation', 'contact', 'emergencyContact', 'postalAddress', 'House_No', 'ApartmentName', 'rentBalance'
       ]
     }]
   }).then(user => {
@@ -149,15 +150,15 @@ exports.userContent = (req, res) => {
 // FETCH all Users include TenantInfo
 exports.findAll = (req, res) => {
   User.findAll({
-    attributes: [
-      ['uuid', 'UserId'], 'firstname', 'lastname'
-    ],
+    attributes: ['uuid', 'firstname', 'lastname', 'createdAt'],
     include: [{
       model: Tenant,
       where: {
         // fk_uuid: db.Sequelize.col('users.uuid')
       },
-      attributes: [['id', 'tenantId'], 'SSN', 'nationality', 'birthDate', 'occupation', 'contact', 'emergencyContact', 'postalAddress', 'House_No', 'ApartmentName', 'rentBalance']
+      attributes: [
+        ['id', 'tenantId'], 'SSN', 'nationality', 'birthDate', 'occupation', 'contact', 'emergencyContact', 'postalAddress', 'House_No', 'ApartmentName', 'rentBalance'
+      ]
     }]
   }).then(customers => {
     res.status(200).send(customers);
