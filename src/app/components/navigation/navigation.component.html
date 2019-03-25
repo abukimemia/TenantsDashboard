@@ -9,22 +9,8 @@
   </div>
   <div class="header-nav" [clr-nav-level]="1">
     <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active"><span class="nav-text">Home</span></a>
-    <clr-dropdown>
-      <a class="nav-link" clrDropdownTrigger>
-        <span class="nav-text">Support & Maintenance</span>
-      </a>
-      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-        <a [routerLink]="['/support']" clrDropdownItem routerLinkActive="active">Submit Maintenance Query</a>
-      </clr-dropdown-menu>
-    </clr-dropdown>
-    <clr-dropdown>
-        <a class="nav-link" clrDropdownTrigger>
-          <span class="nav-text">Billing</span>
-        </a>
-        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-          <a [routerLink]="['/billing']" clrDropdownItem routerLinkActive="active">View Payment Reports</a>
-        </clr-dropdown-menu>
-      </clr-dropdown>
+    <a class="nav-link" [routerLink]="['/support']" routerLinkActive="active"><span class="nav-text">Support & Maintenance</span></a>
+    <a class="nav-link" [routerLink]="['/billing']" routerLinkActive="active"><span class="nav-text">Billing</span></a>
   </div>
   <div class="header-actions">
     <clr-dropdown>

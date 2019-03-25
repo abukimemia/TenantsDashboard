@@ -58,13 +58,3 @@
     Loading...
   </span>
 </ng-template>
-
-<input type="number" placeholder="Enter rent amount!" [(ngModel)]="finalAmount" style="padding-bottom: 10px;">
-<!-- <h2 *ngIf="paypalLoad">Paypal button is loading</h2> -->
-<span *ngIf="paypalLoad" class="spinner spinner-inline">
-  Loading...
-</span>
-<span *ngIf="paypalLoad">
-  Paypal button is loading...
-</span>
-<div id="paypal-checkout-btn"></div>

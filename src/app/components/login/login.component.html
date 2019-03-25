@@ -1,4 +1,4 @@
-<div class="login-wrapper">
+<div class="login-wrapper" [hidden]="isLoggedIn">
   <form class="login" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
     <section class="title">
       <h3 class="welcome">Welcome to</h3>

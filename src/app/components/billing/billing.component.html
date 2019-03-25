@@ -1,43 +1,53 @@
+<input type="number" placeholder="Enter rent amount!" [(ngModel)]="finalAmount" style="padding-bottom: 10px;">
+<!-- <h2 *ngIf="paypalLoad">Paypal button is loading</h2> -->
+<span *ngIf="paypalLoad" class="spinner spinner-inline">
+  Loading...
+</span>
+<span *ngIf="paypalLoad">
+  Paypal button is loading...
+</span>
+<div id="paypal-checkout-btn"></div>
+<br>
+<div class="clr-row">
+  <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        Header
+      </div>
+      <div class="card-block">
+        <div class="card-text">
+          {{userInfo.rentBalance}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Table -->
 <clr-datagrid (clrDgRefresh)="refresh($event)" [clrDgLoading]="loading">
-    <clr-dg-column [clrDgField]="'id'">Payment Id</clr-dg-column>
-    <clr-dg-column [clrDgField]="'payment_method'">Payment Method</clr-dg-column>
-    <clr-dg-column [clrDgField]="'state'">State</clr-dg-column>
-    <clr-dg-column [clrDgField]="'total'">Amount Paid</clr-dg-column>
-    <clr-dg-column>Balance</clr-dg-column>
-    <clr-dg-column [clrDgField]="'create_time'">Date Created</clr-dg-column>
-  
-    <clr-dg-placeholder>No Records found!</clr-dg-placeholder>
-  
-    <clr-dg-row *clrDgItems="let payment of payments" [clrDgItem]="payment">
-      <clr-dg-cell>{{ payment.id }}</clr-dg-cell>
-      <clr-dg-cell>{{ payment.payment_method }}</clr-dg-cell>
-      <clr-dg-cell>{{ payment.state }}</clr-dg-cell>
-      <clr-dg-cell>{{ payment.total }}</clr-dg-cell>
-      <clr-dg-cell>{{ (payment.total) - (160)}}</clr-dg-cell>
-      <clr-dg-cell>{{ payment.create_time | date:'medium' }}</clr-dg-cell>
-    </clr-dg-row>
-  
-    <clr-dg-footer>
-      <clr-dg-pagination #pagination [clrDgPageSize]="10">
-        <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Payments per page</clr-dg-page-size>
-        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-        of {{pagination.totalItems}} Payments
-      </clr-dg-pagination>
-    </clr-dg-footer>
-  </clr-datagrid>
+  <clr-dg-column [clrDgField]="'id'">Payment Id</clr-dg-column>
+  <clr-dg-column [clrDgField]="'payment_method'">Payment Method</clr-dg-column>
+  <clr-dg-column [clrDgField]="'state'">State</clr-dg-column>
+  <clr-dg-column [clrDgField]="'total'">Amount Paid</clr-dg-column>
+  <clr-dg-column>Balance</clr-dg-column>
+  <clr-dg-column [clrDgField]="'create_time'">Date Created</clr-dg-column>
 
-  <!-- cart: "9C0197028N327104T"
-create_time: "2019-03-12T03:59:37Z"
-id: "PAYID-LSDS5CY1DW636700S2475404"
-intent: "sale"
-payer:
-payer_info:
-country_code: "US"
-email: "akimesh51-buyer@gmail.com"
-first_name: "test"
-last_name: "buyer"
-middle_name: "test"
-payer_id: "37EP5NGQF6U78"
-payment_method: "paypal"
-status: "VERIFIED"   -->
+  <clr-dg-placeholder>No Records found!</clr-dg-placeholder>
+
+  <clr-dg-row *clrDgItems="let payment of payments" [clrDgItem]="payment">
+    <clr-dg-cell>{{ payment.id }}</clr-dg-cell>
+    <clr-dg-cell>{{ payment.payment_method }}</clr-dg-cell>
+    <clr-dg-cell>{{ payment.state }}</clr-dg-cell>
+    <clr-dg-cell>{{ payment.total }}</clr-dg-cell>
+    <clr-dg-cell>{{ (userInfo.rentBalance) - (payment.total)}}</clr-dg-cell>
+    <clr-dg-cell>{{ payment.create_time | date:'medium' }}</clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>
+    <clr-dg-pagination #pagination [clrDgPageSize]="10">
+      <clr-dg-page-size [clrPageSizeOptions]="[10,20,50,100]">Payments per page</clr-dg-page-size>
+      {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+      of {{pagination.totalItems}} Payments
+    </clr-dg-pagination>
+  </clr-dg-footer>
+</clr-datagrid>
