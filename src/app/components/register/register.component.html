@@ -103,7 +103,7 @@
     </form>
   </clr-wizard-page>
 
-  <clr-wizard-page [clrWizardPageNextDisabled]="SSN.pristine || nationality.pristine || birthDate.pristine || occupation.pristine || contact.pristine || emergencyContact.pristine || postalAddress.pristine || House_No.pristine || ApartmentName.pristine || rentBalance.pristine || !formPageTwo.valid">
+  <clr-wizard-page [clrWizardPageNextDisabled]="SSN.pristine || nationality.pristine || birthDate.pristine || occupation.pristine || contact.pristine || emergencyContact.pristine || postalAddress.pristine || House_No.pristine || ApartmentName.pristine || !formPageTwo.valid">
     <ng-template clrPageTitle>Tenant Information</ng-template> <!-- mandatory -->
     <ng-template clrPageNavTitle>
       Tenant Information
@@ -296,10 +296,6 @@
           <div class="form-group">
             <label>Apartment Name:</label>
             <span>{{ this.form.ApartmentName }}</span>
-          </div>
-          <div class="form-group">
-            <label>RentBalance:</label>
-            <span>{{ this.form.rentBalance }}</span>
           </div>
         </section>
       </form>

@@ -48,6 +48,6 @@ export class SignUpInfo {
         this.postalAddress = postalAddress;
         this.House_No = House_No;
         this.ApartmentName = ApartmentName;
-        this.rentBalance = '10000';
+        this.rentBalance = '1000';
     }
 }

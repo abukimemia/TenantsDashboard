@@ -1,7 +1,7 @@
 const env = {
   database: 'test',
   username: 'postgres',
-  password: 'gprs9708',
+  password: 'gprs9708', // change to your postgres db password 
   host: 'localhost',
   dialect: 'postgres',
   pool: {

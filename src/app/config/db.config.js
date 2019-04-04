@@ -44,15 +44,4 @@ db.user.hasMany(db.payments, {foreignKey: 'fk_uuid', sourceKey: 'uuid'});
 db.payments.belongsTo(db.user, {foreignKey: 'fk_uuid', targetKey: 'uuid'});
 db.payments.belongsTo(db.tenant, {foreignKey: 'fk_tenantId', targetKey: 'id'});
 
-// db.address.belongsTo(db.customers, {foreignKey: 'fk_customerid', targetKey: 'uuid'});
-// db.customers.hasOne(db.address, {foreignKey: 'fk_customerid', targetKey: 'uuid'});
-
-// Country.hasMany(City, {foreignKey: 'countryCode', sourceKey: 'isoCode'});
-// City.belongsTo(Country, {foreignKey: 'countryCode', targetKey: 'isoCode'});
-
-// Company.hasMany(Product, {foreignKey: 'fk_companyid', sourceKey: 'uuid'});
-// Product.belongsTo(Company, {foreignKey: 'fk_companyid', targetKey: 'uuid'});
-
-
-
 module.exports = db;
